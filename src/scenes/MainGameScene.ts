@@ -27,7 +27,7 @@ export class MainGameScene extends Scene
 
         this.load.image('bg', 'Backgrounds/darkPurple.png');
         this.load.image('planet', 'Planets/planet00.png');
-        this.load.atlasXML('sprites', 'Spritesheet/sheet.png', 'Spritesheet/sheet.xml');
+        this.load.atlas('sprites', 'Spritesheet/gameSprites.png', 'Spritesheet/gameSprites.json');
 
         this.load.json('playerShips', 'Data/playerShips.json');
     }
@@ -124,7 +124,7 @@ export class MainGameScene extends Scene
         const enemySize: number = 32;
         const enemyPosX: number = Phaser.Math.Between(enemySize, this.cameras.main.width - enemySize);
         const enemyPosY: number = -enemySize;
-        let enemy: GameObjects.Image = this.add.image(enemyPosX, enemyPosY, "sprites", "ufoRed.png").setDepth(100);
+        let enemy: GameObjects.Image = this.add.image(enemyPosX, enemyPosY, "sprites", "ufoRed").setDepth(100);
         this.enemies.add(enemy);
         this.physics.add.existing(enemy);
         const enemyBody: Physics.Arcade.Body = enemy.body as Physics.Arcade.Body;
