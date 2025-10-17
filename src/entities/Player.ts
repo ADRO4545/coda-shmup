@@ -6,8 +6,8 @@ import Weapon from "../components/Weapon.ts";
 
 export default class Player extends Entity {
     private readonly _bulletData: BulletData = {
-        width: 4,
-        height: 12,
+        width: 12,
+        height: 4,
         color: 0xffe066,
         speed: 1024
     };
@@ -28,6 +28,8 @@ export default class Player extends Entity {
     public init(bulletsGroup: Phaser.Physics.Arcade.Group) {
         this.addComponent(new Weapon(bulletsGroup, this._bulletData));
 
+        this.angle = -90;
+
         this.selectPlayerShip(1);
 
         this._rateOfFire = 0.5;
@@ -39,6 +41,8 @@ export default class Player extends Entity {
         this._playerShipData = playerShipsData[playerShipDataId];
 
         this.setTexture('sprites', this._playerShipData.texture);
+        const bodyData = this._playerShipData.body;
+        this.arcadeBody.setCircle(bodyData.radius, bodyData.offsetX, bodyData.offsetY);
     }
 
     preUpdate(timeSinceLaunch: number, deltaTime: number) {
@@ -56,7 +60,7 @@ export default class Player extends Entity {
         // Press space to shoot
         if (this._cursorKeys.space.isDown) {
             if (timeSinceLaunch - this._lastShotTime > this._rateOfFire * 1000) {
-                this.getComponent(Weapon)?.shoot(this.x, this.y - this.displayHeight / 2, -1);
+                this.getComponent(Weapon)?.shoot(this);
 
                 this._lastShotTime = timeSinceLaunch;
             }

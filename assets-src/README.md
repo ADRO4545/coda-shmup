@@ -27,3 +27,5 @@ Les sprites viennent du pack Kenney « Space Shooter Redux », licence CC0 (doma
 Les images répétées, comme le fond `darkPurple`, restent des images à part (`public/assets/Backgrounds/`).
 Dans un atlas, le filtrage de la carte graphique lit quelques pixels autour de chaque frame :
 une image répétée montrerait des joints entre ses tuiles.
+
+Les vaisseaux et l'ovni ont été tournés de 90° pour regarder vers la droite : dans Phaser, un angle de 0 pointe vers la droite.
