@@ -50,9 +50,17 @@ export default class Player extends Entity {
 
         // Press left or right arrow keys to move the player smoothly horizontally using deltaTime
         if (this._cursorKeys.left.isDown) {
-            this.x -= this._playerShipData.movementSpeed * deltaTime;
+            if (this._cursorKeys.shift.isDown) {
+                this.angle -= this._playerShipData.movementSpeed * deltaTime;
+            } else {
+                this.x -= this._playerShipData.movementSpeed * deltaTime;
+            }
         } else if (this._cursorKeys.right.isDown) {
-            this.x += this._playerShipData.movementSpeed * deltaTime;
+            if (this._cursorKeys.shift.isDown) {
+                this.angle += this._playerShipData.movementSpeed * deltaTime;
+            } else {
+                this.x += this._playerShipData.movementSpeed * deltaTime;
+            }
         }
         // Stop player from going offscreen
         this.x = Phaser.Math.Clamp(this.x, this.displayWidth / 2, this.scene.cameras.main.width - this.displayWidth / 2);
