@@ -21,8 +21,23 @@ export default class Enemy extends Entity {
         this.addComponent(new Weapon(bulletsGroup, this._bulletData));
 
         // Listen once per enemy, not on every enable(): pooled enemies are reused many times
-        this.getComponent(Health)?.on(Health.DEATH_EVENT, () => {
-            this.disable();
+        const health = this.getComponent(Health);
+        health?.on(Health.CHANGE_EVENT, () => {
+            this.setTintFill(0xffffff);
+
+            if (health?.current == 0)
+            {
+                this.disableBody();
+            }
+
+            this.scene.time.delayedCall(50, () => {
+                this.clearTint();
+
+                if (health?.current == 0)
+                {
+                    this.disable();
+                }
+            });
         });
 
         this.angle = 90;
@@ -85,6 +100,9 @@ export default class Enemy extends Entity {
             this.disable();
         }
 
-        this.getComponent(Movement)?.moveVertically(this, deltaTime);
+        if (!this.isTinted)
+            this.getComponent(Movement)?.moveVertically(this, deltaTime);
+        else
+            this.getComponent(Movement)?.moveVertically(this, deltaTime * 0.5);
     }
 }
