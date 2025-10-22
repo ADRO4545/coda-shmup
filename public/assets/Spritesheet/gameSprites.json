@@ -134,6 +134,27 @@
 						"w": 91,
 						"h": 91
 					}
+				},
+				{
+					"filename": "playerLife1_blue",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 33,
+						"h": 26
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 33,
+						"h": 26
+					},
+					"frame": {
+						"x": 81,
+						"y": 192,
+						"w": 33,
+						"h": 26
+					}
 				}
 			]
 		}
