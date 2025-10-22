@@ -33,7 +33,11 @@ export default class MainGameScene extends Scene {
         }
 
         const player = this.entityManager.initAndSpawnPlayer();
-        player.getComponent(Health)?.once(Health.DEATH_EVENT, this.endGame, this);
+        player.getComponent(Health)?.once(Health.DEATH_EVENT, () => {
+            // Hide the player and let its explosion play before showing the game over screen
+            player.disableBody(true, true);
+            this.time.delayedCall(1000, this.endGame, [], this);
+        }, this);
         this.entityManager.initEnemies();
         this.entityManager.initGroupCollisions();
 

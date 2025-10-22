@@ -155,6 +155,69 @@
 						"w": 33,
 						"h": 26
 					}
+				},
+				{
+					"filename": "star1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 25,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 25,
+						"h": 24
+					},
+					"frame": {
+						"x": 81,
+						"y": 222,
+						"w": 25,
+						"h": 24
+					}
+				},
+				{
+					"filename": "star2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 25,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 25,
+						"h": 24
+					},
+					"frame": {
+						"x": 81,
+						"y": 250,
+						"w": 25,
+						"h": 24
+					}
+				},
+				{
+					"filename": "star3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 81,
+						"y": 278,
+						"w": 24,
+						"h": 24
+					}
 				}
 			]
 		}
