@@ -1,5 +1,6 @@
 import type {BulletData} from '../gameData/BulletData.ts';
 import Entity from './Entity.ts';
+import Health from "../components/Health.ts";
 import Movement from "../components/Movement.ts";
 import Weapon from "../components/Weapon.ts";
 
@@ -8,14 +9,21 @@ export default class Enemy extends Entity {
         width: 12,
         height: 12,
         color: 0xf25f5c,
-        speed: 512
+        speed: 512,
+        damage: 1,
     };
     private _shootTimerConfig: Phaser.Types.Time.TimerEventConfig;
     private _shootTimer: Phaser.Time.TimerEvent;
 
     public init(bulletsGroup: Phaser.Physics.Arcade.Group) {
+        this.addComponent(new Health(1));
         this.addComponent(new Movement(0.2));
         this.addComponent(new Weapon(bulletsGroup, this._bulletData));
+
+        // Listen once per enemy, not on every enable(): pooled enemies are reused many times
+        this.getComponent(Health)?.on(Health.DEATH_EVENT, () => {
+            this.disable();
+        });
 
         this.angle = 90;
 
@@ -46,6 +54,10 @@ export default class Enemy extends Entity {
     public enable(x: number, y: number) {
         this.enableBody(true, x, y - this.displayHeight, true, true);
         this._shootTimer.reset(this._shootTimerConfig);
+
+        // Restore health, in case the enemy is reused from the pool, without emitting events
+        const health = this.getComponent(Health);
+        health?.heal(health!.max, false);
     }
 
     public disable() {
