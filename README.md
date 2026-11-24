@@ -2,10 +2,10 @@
 This is the base project used as teaching material for the gamedev module at Coda
 
 ## Suivre le cours commit par commit
-Forkez ce repo, clonez votre fork, puis lancez une seule fois, à la racine du clone :
+Forkez ce repo, clonez votre fork, puis lancez une seule fois, à la racine du clone (macOS, Linux, ou Windows dans PowerShell ou Git Bash, pas dans cmd) :
 
 ```bash
-git config alias.go '!f() { h=$(git rev-list --reverse main | sed -n "$((10#$1))p"); git clean -fdq && git switch -q -fC cours "$h" && git log -1 --oneline; }; f'
+git config alias.go '!f() { h=$(git rev-list --reverse main | sed -n $(expr $1 + 0)p); git clean -fdq && git switch -q -fC cours $h && git log -1 --oneline; }; f'
 ```
 
 Ensuite, pour aller au commit numéro 09 du cours (le numéro affiché sur les slides) :
